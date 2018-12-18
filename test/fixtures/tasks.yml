@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  lead_notes: MyText
+  completed: false
+  project_id: 1
+  employee_id: 1
+
+two:
+  content: MyString
+  lead_notes: MyText
+  completed: false
+  project_id: 1
+  employee_id: 1
