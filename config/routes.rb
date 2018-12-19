@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
-  
-  get '/welcome', to: 'static_pages#hello'
+
+  get '/', to: 'static_pages#hello'
   
 end
