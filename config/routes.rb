@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :tasks
-  resources :employees
-  resources :organizations
-  resources :projects
+
+  resources :organizations do
+    resources :employees, shallow: true
+  end
+
+  resources :projects, shallow: true do
+    resources :tasks do
+      resources :comments
+    end
+  end
+  
   get '/welcome', to: 'static_pages#hello'
   
 end
