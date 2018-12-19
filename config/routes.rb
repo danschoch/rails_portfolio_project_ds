@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :employees
   resources :organizations
   resources :projects
-  get '/welcome', to: 'welcome#hello'
+  get '/welcome', to: 'static_pages#hello'
   
 end
