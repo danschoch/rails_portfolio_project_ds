@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     def create
         project = Project.create(project_params)
         # add current organization to @project.organization_id
+        # add lead_id association
         redirect_to project_path(project)
     end
 

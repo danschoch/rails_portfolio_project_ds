@@ -11,6 +11,7 @@ class EmployeesController < ApplicationController
 
     def create
         @employee = Employee.create(employee_params)
+        # add current organization to @employee.organization_id
         redirect_to employee_path(@employee)
     end
 
