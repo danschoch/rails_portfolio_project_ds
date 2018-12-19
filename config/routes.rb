@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/', to: 'static_pages#hello'
+  root 'static_pages#home'
+  get '/login', to: 'sessions#new'
+  get '/signup', to: 'static_pages#signup'
   
 end
