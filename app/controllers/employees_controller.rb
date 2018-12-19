@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+    before_action :set_employee, only: [:show, :edit, :update]
 
     def index
     end
@@ -10,7 +11,6 @@ class EmployeesController < ApplicationController
     end
 
     def show
-        @employee = Employee.find(params[:id])
     end
 
     def edit
@@ -26,5 +26,9 @@ class EmployeesController < ApplicationController
 
     def employee_params
         params.require().permit
+    end
+
+    def set_employee
+        @employee = Employee.find(params[:id])
     end
 end
