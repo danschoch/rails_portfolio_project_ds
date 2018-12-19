@@ -15,3 +15,10 @@
     <%= link_to task.content, task_path(task) %>
     <p><%= task.lead_notes %></p><br>
 <% end %>
+
+<h3>Recently Completed Tasks</h3>
+<%# add in limit to completed_project_tasks %>
+<% @project.completed_project_tasks.each do |task| %>
+    <%= link_to task.content, task_path(task) %>
+    <p><%= task.lead_notes %></p><br>
+<% end %>

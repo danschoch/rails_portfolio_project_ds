@@ -5,14 +5,14 @@ class Project < ApplicationRecord
     has_many :comments, through: :tasks
 
     def unassigned_project_tasks
-        self.tasks.where({completed: false, employee_id: nil})
+        self.tasks.select {|task| task.status == "Unassigned"}
     end
 
     def assigned_project_tasks
-        self.tasks.where({completed: false})
+        self.tasks.select {|task| task.status == "In Progress"}
     end
 
     def completed_project_tasks
-        self.tasks.where({completed: true})
+        self.tasks.select {|task| task.status == "Completed"}
     end
 end

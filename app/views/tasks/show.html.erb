@@ -1,17 +1,14 @@
 <h1>Task: <%= @task.content %></h1>
 
-<h3>Deadline: <%= deadline_formatted(@project) %></h3>
-
-<h3>Project Lead: <%= project_lead_name(@project) %></h3>
-
-<h3>Unassigned Tasks:</h3>
-<% @project.unassigned_project_tasks.each do |task| %>
-    <%= link_to task.content, task_path(task) %>
-    <p><%= task.lead_notes %></p><br>
+<h3>Task Status: <%= @task.status%>
+<% if @task.status == "In Progress" %>
+    <h4>Assigned to <%= link_to @task.employee.full_name, employee_path(@task.employee) %> </h4>
 <% end %>
 
-<h3>In Progress Tasks:</h3>
-<% @project.assigned_project_tasks.each do |task| %>
-    <%= link_to task.content, task_path(task) %>
-    <p><%= task.lead_notes %></p><br>
-<% end %>
+<h3>Project Lead: <%= project_lead_name(@task.project) %></h3>
+
+<h3>Notes from Project Lead:</h3>
+<p><%= @task.lead_notes %></p>
+
+<%# render 'comments/form' %>
+
