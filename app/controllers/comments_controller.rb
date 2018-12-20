@@ -7,6 +7,9 @@ class CommentsController < ApplicationController
     end
 
     def create
+        comment = Comment.create(comment_params)
+        comment.task_id = params[:task_id]
+        redirect_to task_path(comment.task)
     end
 
     def show
@@ -23,7 +26,7 @@ class CommentsController < ApplicationController
 
     private
 
-    def employee_params
-        params.require().permit
+    def comment_params
+        params.require(:comment).permit(:content, :task_id, :employee_id)
     end
 end
