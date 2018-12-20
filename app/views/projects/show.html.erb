@@ -1,8 +1,19 @@
 <h1>Project: <%= @project.name %></h1>
 
-<h3>Deadline: <%= deadline_formatted(@project) %></h3>
+<h3>Deadline: <%= deadline_formatted(@project) %></h3><br>
 
-<h3>Project Lead: <%= project_lead_name(@project) %></h3>
+<h3>Description:</h3>
+<p><%= @project.description %></p><br>
+
+<h3>Project Lead: <%= project_lead_name(@project) %></h3><br>
+
+<h3>Employees Currently Participating:</h3>
+<ul>
+<% @project.employees.each do |employee| %>
+    <li><%= link_to employee.full_name, employee_path(employee) %> - <%= employee.title %></li>
+<% end %>
+</ul><br>
+
 
 <h3>Unassigned Tasks:</h3>
 <% @project.unassigned_project_tasks.each do |task| %>
