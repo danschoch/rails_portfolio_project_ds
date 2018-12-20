@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-
+  
+  root 'static_pages#home'
+  get '/signup', to: 'static_pages#signup'
+  get '/login', to: 'static_pages#login'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   resources :organizations do
     resources :employees, shallow: true
   end
@@ -10,10 +16,4 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'static_pages#home'
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
-  get '/signup', to: 'static_pages#signup'
-  
 end

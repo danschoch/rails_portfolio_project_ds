@@ -1,11 +1,5 @@
-<h1>Login Here</h1>
-
-<%# Create login form here %>
-<%# credentials: email, password %>
 <%= form_for :employee, url: {controller: 'sessions', action: 'create'}, method: 'post' do |f| %>
     Email: <%= f.text_field :email %><br>
     Password: <%= f.password_field :password %><br>
     <%= f.submit "Login" %>
 <% end %>
-
-<%# link_to 'Sign In', employee_path(@employee) %>
