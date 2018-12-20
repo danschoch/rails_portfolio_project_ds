@@ -1,5 +1,11 @@
+<%# TODO: Greeting Control Flow
+if @employee = current_user, show Welcome back!
+if @employee != current_user, show Now Viewing:
+Set up separate partial for this%>
+
 <h1>Hello, <%= @employee.first_name %></h1>
 
+<%# TODO: Don't show org - include in header or layout %>
 <h3>Organization:</h3>
 <h4><%= @employee.organization.name %></h4>
 
@@ -9,5 +15,15 @@
 <h3>Email:</h3>
 <h4><%= @employee.title %></h4>
 
+<%# TODO: Make this cleaner - Maybe display only if lead = true
+"Project lead for #{project title}" or similar %>
 <h3>Project Lead?</h3>
 <h4><%= @employee.lead %></h4><br>
+
+<h2>Currently Working On:</h2>
+<%# TODO: List of tasks belonging to user %>
+
+<h2>Recently Completed:</h2>
+<%# TODO: List of previous tasks completed by user, limit 5%>
+
+

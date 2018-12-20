@@ -12,4 +12,5 @@ class Task < ApplicationRecord
             "Completed"
         end
     end
+    
 end
