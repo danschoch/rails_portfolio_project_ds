@@ -10,5 +10,17 @@
 <h3>Notes from Project Lead:</h3>
 <p><%= @task.lead_notes %></p>
 
-<%= render 'comments/form' %>
+<h4>Add a Comment Below:</h4>
+
+<%= render 'comments/form' %><br>
+
+<h4>Comments:</h4>
+<ol>
+<% @comments.each do |comment| %>
+    <li>
+    <%= comment.content %><br>
+    Posted By: <%= comment.employee.full_name if comment.employee %>
+    </li>
+<% end %>
+</ol>
 
