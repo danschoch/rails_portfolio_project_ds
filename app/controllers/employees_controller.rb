@@ -28,6 +28,12 @@ class EmployeesController < ApplicationController
     end
 
     def edit
+        if :project_lead? 
+            :set_employee
+            #other stuff
+        else
+            return head(:forbidden)
+        end
     end
 
     def update
@@ -45,6 +51,10 @@ class EmployeesController < ApplicationController
 
     def set_employee
         @employee = Employee.find(params[:id])
+    end
+
+    def project_lead?
+        current_user.lead == true
     end
 
    
