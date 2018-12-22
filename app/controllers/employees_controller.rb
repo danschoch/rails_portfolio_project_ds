@@ -23,6 +23,9 @@ class EmployeesController < ApplicationController
     end
 
     def show
+        @assigned = @employee.assigned_tasks
+        @completed = @employee.completed_tasks
+        binding.pry
     end
 
     def edit
@@ -44,4 +47,6 @@ class EmployeesController < ApplicationController
     def set_employee
         @employee = Employee.find(params[:id])
     end
+
+   
 end

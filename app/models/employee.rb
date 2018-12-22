@@ -9,6 +9,18 @@ class Employee < ApplicationRecord
     def full_name
         self.first_name + ' ' + self.last_name
     end
+    
+    def assigned_tasks
+        self.tasks.select do |task|
+            task.completed == false
+        end
+    end
+
+    def completed_tasks
+        self.tasks.select do |task|
+            task.completed == true
+        end
+    end
 
 
 end
