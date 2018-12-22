@@ -6,6 +6,6 @@ class StaticPagesController < ApplicationController
     end
 
     def signup
-        @organization = Organization.find(1)
+        @organization = Organization.new
     end
 end

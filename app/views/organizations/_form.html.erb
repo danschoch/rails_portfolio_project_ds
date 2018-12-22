@@ -1,0 +1,5 @@
+<%= form_for :organization, url: {controller: 'organizations', action: 'create'}, method: 'post' do |f| %>
+    Name of Your Organization: <%= f.text_field :name %>
+    <%= f.submit "Continue"%>
+<% end %>
+

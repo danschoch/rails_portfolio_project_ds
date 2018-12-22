@@ -7,6 +7,8 @@ class OrganizationsController < ApplicationController
     end
 
     def create
+        @new_org = Organization.create(organization_params)
+        redirect_to new_organization_employee_path(@new_org)
     end
 
     def show
@@ -23,7 +25,7 @@ class OrganizationsController < ApplicationController
 
     private
 
-    def employee_params
-        params.require().permit
+    def organization_params
+        params.require(:organization).permit(:name)
     end
 end
