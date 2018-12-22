@@ -25,7 +25,6 @@ class EmployeesController < ApplicationController
     def show
         @assigned = @employee.assigned_tasks
         @completed = @employee.completed_tasks
-        binding.pry
     end
 
     def edit
