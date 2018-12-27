@@ -1,6 +1,6 @@
-<h1>Project: <%= @project.name %></h1>
+<h1>Project: <%= @project.name %></h1><br>
 
-<h3>Deadline: <%= deadline_formatted(@project) %></h3><br>
+<h3>Deadline: <%= deadline_formatted(@project) %></h3>
 
 <h3>Description:</h3>
 <p><%= @project.description %></p><br>
@@ -16,23 +16,26 @@
 
 
 <h3>Unassigned Tasks:</h3>
+<ul>
 <% @project.unassigned_project_tasks.each do |task| %>
-    <%= link_to task.content, task_path(task) %>
-    <p><%= task.lead_notes %></p><br>
+    <li><%= link_to task.content, task_path(task) %></li>
 <% end %>
+</ul><br>
 
 <h3>In Progress Tasks:</h3>
+<ul>
 <% @project.assigned_project_tasks.each do |task| %>
-    <%= link_to task.content, task_path(task) %>
-    <p><%= task.lead_notes %></p><br>
+    <li><%= link_to task.content, task_path(task) %></li>
 <% end %>
+</ul><br>
 
 <h3>Recently Completed Tasks</h3>
+<ul>
 <%# add in limit to completed_project_tasks %>
 <% @project.completed_project_tasks.each do |task| %>
-    <%= link_to task.content, task_path(task) %>
-    <p><%= task.lead_notes %></p><br>
+    <li><%= link_to task.content, task_path(task) %></li>
 <% end %>
+</ul><br>
 
 <h4><%=link_to "All Projects", projects_path %></h4>
 
