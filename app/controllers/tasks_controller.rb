@@ -18,6 +18,7 @@ class TasksController < ApplicationController
     def show
         @comment = Comment.new
         @comments = @task.comments.all
+        @curr_user = current_user
     end
 
     def edit

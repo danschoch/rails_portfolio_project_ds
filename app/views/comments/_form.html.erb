@@ -1,5 +1,6 @@
 <%= form_for @comment, url: task_comments_path(@task.id, @comment) do |f| %>
     <%# TODO: add hidden_fields for employee_id with current_user %>
+    <%= f.hidden_field :employee_id, value: @curr_user.id%>
     <%= f.hidden_field :task_id, value: @task.id%>
     <%= f.text_area :content %>
     <%= f.submit "Submit Comment" %>
