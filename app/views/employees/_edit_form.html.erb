@@ -3,7 +3,7 @@
 <%= form_for @employee do |f| %>
     First Name: <%= f.text_field :first_name %>
     Last Name: <%= f.text_field :last_name %>
-    <% if @curr_user.lead == 'true' %>
+    <% if @curr_user.lead %>
         Title: <%= f.text_field :title %>
     <% end %>
     <br>

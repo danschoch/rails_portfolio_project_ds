@@ -15,4 +15,14 @@ class Project < ApplicationRecord
     def completed_project_tasks
         self.tasks.select {|task| task.status == "Completed"}
     end
+
+    def self.active_project_ids(org_id)
+        where(organization_id: Employee.find(org_id)).pluck(:id)
+    end
+
+    def self.active_projects(org_id)
+        self.active_project_ids(org_id).map do |id|
+            self.find_by(id: id)
+        end
+    end
 end

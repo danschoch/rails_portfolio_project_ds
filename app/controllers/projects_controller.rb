@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
     before_action :set_project, only: [:show, :edit, :update, :destroy]
 
     def index
-        @projects = Project.all
+        @projects = Project.active_projects(Employee.find(session[:employee_id]).organization.id)
     end
     
     def new
