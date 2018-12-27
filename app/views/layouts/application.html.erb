@@ -10,6 +10,12 @@
   </head>
 
   <body>
+
+    <% if session[:employee_id]%>
+      <h1>Welcome to Roundtable Task Management for <%= Employee.find(session[:employee_id]).organization.name %></h1>
+    <% end %>
+    <br>
+
     <%= yield %>
 
     <% if session[:employee_id] %>
