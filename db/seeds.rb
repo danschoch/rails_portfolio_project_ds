@@ -13,7 +13,7 @@ Organization.create(name: "Campaign")
 
 #Projects
 
-Project.create(name: "Trump Tower Moscow", due_date: DateTime.new.at_midnight, lead_id: 2, description: "corrupt new fancy tower", organization_id: 1)
+Project.create(name: "Trump Tower Moscow", due_date: DateTime.new.at_midnight, lead_id: 3, description: "corrupt new fancy tower", organization_id: 1)
 Project.create(name: "Campaign", due_date: DateTime.new.at_noon, lead_id: 3, description: "corrupt new fancy tower", organization_id: 1)
 Project.create(name: "MAGA", due_date: DateTime.new.at_noon, lead_id: 4, description: "Made it pretty self-explanatory, didn't I?", organization_id: 2)
 
