@@ -4,6 +4,8 @@
     <%= link_to project.name, project_path(project) %><br>
 <% end %>
 
+<br>
+
 <% if @curr_user.lead %>
-    <%= link_to "Create New Project", new_project_path %><br>
+    <h4><%= link_to "Create New Project", new_project_path %><br></h4>
 <% end %>
