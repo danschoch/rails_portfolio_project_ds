@@ -29,6 +29,7 @@ class EmployeesController < ApplicationController
     end
 
     def edit
+        @curr_user = current_user
         if :project_lead? 
             render "edit"
         else
