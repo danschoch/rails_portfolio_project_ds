@@ -9,7 +9,7 @@
 
 <h3>Employees Currently Participating:</h3>
 <ul>
-<% @project.employees.each do |employee| %>
+<% @project.employees.uniq.each do |employee| %>
     <li><%= link_to employee.full_name, employee_path(employee) %> - <%= employee.title %></li>
 <% end %>
 </ul><br>
