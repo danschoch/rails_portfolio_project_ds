@@ -3,3 +3,7 @@
 <% @projects.each do |project| %>
     <%= link_to project.name, project_path(project) %><br>
 <% end %>
+
+<% if @curr_user.lead %>
+    <%= link_to "Create New Project", new_project_path %><br>
+<% end %>
