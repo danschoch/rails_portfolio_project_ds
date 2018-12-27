@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     def current_user
         Employee.find_by(id: session[:employee_id]) if logged_in?
     end
+
+    def set_user
+        @curr_user = current_user
+    end
 end

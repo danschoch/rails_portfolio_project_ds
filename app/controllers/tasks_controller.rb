@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
     before_action :require_login
     before_action :set_task, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:show, :edit]
 
     def index
         @task = Task.all
@@ -18,11 +19,11 @@ class TasksController < ApplicationController
     def show
         @comment = Comment.new
         @comments = @task.comments.all
-        @curr_user = current_user
+        #@curr_user = current_user
     end
 
     def edit
-        @curr_user = current_user
+        #@curr_user = current_user
         if @curr_user.lead 
             render 'edit'
         else

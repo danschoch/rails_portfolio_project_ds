@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
     before_action :require_login
     before_action :set_project, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only:[:index, :new, :edit]
 
     def index
         @projects = Project.active_projects(Employee.find(session[:employee_id]).organization.id)
