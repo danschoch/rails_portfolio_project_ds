@@ -22,6 +22,19 @@ class TasksController < ApplicationController
     end
 
     def edit
+        @curr_user = current_user
+        if @curr_user.lead 
+            render 'edit'
+        else
+            if @task.employee
+                @task.employee = nil
+                @task.save
+            else
+                @task.employee = @curr_user
+                @task.save
+            end
+            redirect_to task_path(@task)
+        end
     end
 
     def update
