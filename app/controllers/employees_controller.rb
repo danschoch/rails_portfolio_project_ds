@@ -24,7 +24,6 @@ class EmployeesController < ApplicationController
 
     def show
         @curr_user = current_user
-        binding.pry
         @assigned = @employee.assigned_tasks
         @completed = @employee.completed_tasks
     end
