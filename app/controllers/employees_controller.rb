@@ -23,21 +23,27 @@ class EmployeesController < ApplicationController
     end
 
     def show
+        @curr_user = current_user
+        binding.pry
         @assigned = @employee.assigned_tasks
         @completed = @employee.completed_tasks
     end
 
     def edit
         if :project_lead? 
-            :set_employee
-            #other stuff
+            render "edit"
         else
             return head(:forbidden)
         end
     end
 
     def update
-        @employee.update(employee_params)
+        if :project_lead?
+            @employee.update(employee_params)
+            redirect_to employee_path(@employee)
+        else
+            return head(:forbidden)
+        end
     end
 
     def destroy

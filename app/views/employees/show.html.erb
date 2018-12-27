@@ -34,4 +34,17 @@ Set up separate partial for this%>
 <% end %>
 </ul>
 
+<% if @curr_user.lead == 'true' %>
+    <% if @employee == @curr_user %>
+        <%= link_to 'Add Employee', new_organization_employee_path(@employee.organization.id)%>
+        <%= link_to 'Edit Employee', edit_employee_path(@employee) %>
+    <% else %>
+        <%= link_to 'Edit Employee', edit_employee_path(@employee) %>
+    <% end %>
+<% else %>
+    <% if @employee == @curr_user %>
+        <%= link_to 'Edit Employee', edit_employee_path(@employee) %>
+    <% end %>
+<% end %>
+
 
