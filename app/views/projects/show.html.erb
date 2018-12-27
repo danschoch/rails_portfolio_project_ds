@@ -1,4 +1,9 @@
-<h1>Project: <%= @project.name %></h1><br>
+<h1>Project: <%= @project.name %></h1>
+
+<% if @curr_user.lead && @project.lead_id == @curr_user.id %>
+    <%= link_to "Edit This Project", edit_project_path(@project) %><br>
+<% end %>
+<br>
 
 <h3>Deadline: <%= deadline_formatted(@project) %></h3>
 
