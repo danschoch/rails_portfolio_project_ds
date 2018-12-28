@@ -1,21 +1,22 @@
 <%= form_for @employee, url: {controller: 'employees', action: 'create'}, method: 'post' do |f| %>
+
+    <%= f.hidden_field :organization_id, value: @organization.id%> <%# TODO: find out how to use :id from path %>    
     
-    <% if @organization.employees.empty? %>
-        <%= f.hidden_field :lead, value: true %>
-    <% else %>
-        <%= f.hidden_field :lead, value: false %>
-    <% end %>
-    <%= f.hidden_field :organization_id, value: @organization.id%> <%# TODO: find out how to use :id from path %>
-    
-    Personal Information
+    Personal Information<br>
     First Name: <%= f.text_field :first_name %>
     Last Name: <%= f.text_field :last_name %>
     Title: <%= f.text_field :title %><br>
     <br>
-    Log In Information
+    Log In Information<br>
     Email: <%= f.text_field :email %>
     Password: <%= f.password_field :password %>
-    Confirm Password: <%= f.password_field :password_confirmation %>
+    Confirm Password: <%= f.password_field :password_confirmation %><br>
+
+    <% if @organization.employees.empty? %>
+        <%= f.hidden_field :lead, value: true %>
+    <% else %>
+        <%= f.check_box :lead, {}, "true", "false" %> Check here for Project Lead<br>
+    <% end %>
 
     <%= f.submit "Submit"%>
 <% end %>
