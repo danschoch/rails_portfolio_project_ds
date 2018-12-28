@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-    def require_login
-        return head(:forbidden) unless logged_in?
-    end
-
     def logged_in?
         !!session[:employee_id]
+    end
+    
+    def require_login
+        return head(:forbidden) unless logged_in?
     end
 
     def current_user
