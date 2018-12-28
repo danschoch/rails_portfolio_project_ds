@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
     before_action :set_user
 
     def index
-        @employees = Employee.all
+        @employees = current_org_employees
     end
     
     def new
@@ -75,6 +75,10 @@ class EmployeesController < ApplicationController
     def set_employee
         @employee = Employee.find(params[:id])
         require_org_permission(@employee.organization_id)
+    end
+
+    def current_org_employees
+        Employee.all.select {|emp| emp.organization_id == session[:organization_id]}
     end
    
 end

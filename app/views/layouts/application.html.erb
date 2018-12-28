@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Roundtable Task Manager</title>
+    <title>Roundtable: <%= Organization.find(session[:organization_id]).name %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,16 +11,14 @@
 
   <body>
 
-    <% if session[:employee_id]%>
-      <h1>Welcome to Roundtable Task Management for <%= Employee.find(session[:employee_id]).organization.name %></h1>
-      <h3>Currently Logged In As: <%= Employee.find(session[:employee_id]).first_name %></h3>
-    <% end %>
-    <br>
+    <h1>Welcome to Roundtable Task Management for <%= Employee.find(session[:employee_id]).organization.name %></h1>
+    <h3>Currently Logged In As: <%= link_to curr_employee_name, employee_path(curr_employee) %></h3>
 
-    <%= yield %><br>
+    <%= yield %>
 
-    <% if session[:employee_id] %>
-      <%= link_to "Log Out", logout_path, method: :delete %>
-    <% end %>
+    <%= link_to "Project Directory", projects_path %>
+    <%= link_to "Employee Directory", organization_employees_path(session[:organization_id]) %>
+    <%= link_to "Log Out", logout_path, method: :delete %>
+
   </body>
 </html>
