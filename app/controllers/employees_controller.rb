@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-    before_action :require_login, only: [:index, :show, :edit, :update, :destroy]#TODO Find a solution to this workaround
+    before_action :require_login, only: [:index, :show, :edit, :update, :destroy] #TODO Find a solution to this workaround
     before_action :set_employee, only: [:show, :edit, :update, :destroy]
     before_action :set_user
 
