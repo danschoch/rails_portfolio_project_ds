@@ -1,7 +1,8 @@
 <h1>Project: <%= @project.name %></h1>
 
 <% if @curr_user.lead && @project.lead_id == @curr_user.id %>
-    <%= link_to "Edit This Project", edit_project_path(@project) %><br>
+    <%= link_to "Edit This Project", edit_project_path(@project) %>
+    <%= link_to 'Delete This Project', project_path(@project), method: :delete, data: {confirm: "Are you sure you want to delete this project? This will also delete its related tasks and their comments."} %>
 <% end %>
 <br>
 

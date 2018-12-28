@@ -27,6 +27,18 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
+        if :project_lead?
+            @project.tasks.each do |task|
+                task.comments.each do |comment|
+                    comment.destroy
+                end
+                task.destroy
+            end
+            @project.destroy
+            redirect_to projects_path
+        else
+            return head(:forbidden)
+        end
     end
 
     private
