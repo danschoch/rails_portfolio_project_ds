@@ -19,11 +19,9 @@ class TasksController < ApplicationController
     def show
         @comment = Comment.new
         @comments = @task.comments.all
-        #@curr_user = current_user
     end
 
     def edit
-        #@curr_user = current_user
         if @curr_user.lead 
             render 'edit'
         else
@@ -54,5 +52,6 @@ class TasksController < ApplicationController
 
     def set_task
         @task = Task.find(params[:id])
+        require_org_permission(@task.project.organization_id)
     end
 end
