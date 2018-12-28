@@ -1,3 +1,3 @@
-<h1>Create a New Employee:</h1>
+<h2>Create a New Employee:</h2>
 
-<%= render 'employees/form' %>
+<%= render partial: 'employees/form', locals: {url: {controller: 'employees', action: 'create'}, method: 'post'}  %>

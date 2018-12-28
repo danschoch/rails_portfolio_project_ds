@@ -38,7 +38,8 @@ class EmployeesController < ApplicationController
     end
 
     def edit
-        if :project_lead? 
+        if :project_lead?
+            @organization = Organization.find(session[:organization_id]) 
             render "edit"
         else
             return head(:forbidden)

@@ -1,4 +1,4 @@
-<%= form_for @employee, url: {controller: 'employees', action: 'create'}, method: 'post' do |f| %>
+<%= form_for @employee, url: url, method: method do |f| %>
 
     <%= f.hidden_field :organization_id, value: @organization.id%> <%# TODO: find out how to use :id from path %>    
     
