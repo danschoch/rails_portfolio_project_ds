@@ -11,10 +11,13 @@
 
   <body>
 
-    <h1>Welcome to Roundtable Task Management for <%= Employee.find(session[:employee_id]).organization.name %></h1>
+    <h1>Welcome to Roundtable Task Management for <%= curr_employee.organization.name %></h1>
     <h3>Currently Logged In As: <%= link_to curr_employee_name, employee_path(curr_employee) %></h3>
 
     <%= yield %>
+    
+    <br>
+    <br>
 
     <%= link_to "Project Directory", projects_path %>
     <%= link_to "Employee Directory", organization_employees_path(session[:organization_id]) %>
