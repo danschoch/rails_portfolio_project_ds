@@ -39,5 +39,6 @@ class ProjectsController < ApplicationController
 
     def set_project
         @project = Project.find(params[:id])
+        require_org_permission(@project.organization_id)
     end
 end

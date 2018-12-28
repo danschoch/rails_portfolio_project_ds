@@ -18,6 +18,7 @@ class EmployeesController < ApplicationController
         if !session[:employee_id]
             if @employee && @employee.authenticate(params[:employee][:password])
                 session[:employee_id] = @employee.id
+                session[:organization_id] = @employee.organization_id
                 redirect_to employee_path(@employee) #TODO DRY this code
             else
                 redirect_to login_path #TODO add flash message that login was denied
@@ -33,13 +34,11 @@ class EmployeesController < ApplicationController
     end
 
     def show
-        @curr_user = current_user
         @assigned = @employee.assigned_tasks
         @completed = @employee.completed_tasks
     end
 
     def edit
-        @curr_user = current_user
         if :project_lead? 
             render "edit"
         else
@@ -67,6 +66,7 @@ class EmployeesController < ApplicationController
 
     def set_employee
         @employee = Employee.find(params[:id])
+        require_org_permission(@employee.organization_id)
     end
 
     def project_lead?
