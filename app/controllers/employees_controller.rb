@@ -55,6 +55,15 @@ class EmployeesController < ApplicationController
     end
 
     def destroy
+        if :project_lead?
+            @employee.tasks.each do |task|
+                task.employee_id = nil
+            end
+            @employee.destroy
+            redirect_to projects_path
+        else
+            return head(:forbidden)
+        end
     end
 
     private
