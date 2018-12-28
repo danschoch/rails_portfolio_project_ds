@@ -19,6 +19,10 @@
 <h3>Notes from Project Lead:</h3>
 <p><%= @task.lead_notes %></p>
 
+<% if @curr_user.lead %>
+    <br><%= link_to 'Delete Task', task_path(@task), method: :delete, data: {confirm: "Are you sure you want to delete this task? This will also delete its comments."} %><br>
+<% end %>
+
 <h4>Add a Comment Below:</h4>
 <%= render 'comments/form' %><br>
 
@@ -32,7 +36,7 @@
 <% end %>
 </ol>
 
-<h4><%= link_to "Current Project", project_path(@task.project) %></h4>
+<h4><%= link_to "Back to Current Project", project_path(@task.project) %></h4>
 <h4><%=link_to "All Projects", projects_path %></h4>
 
 

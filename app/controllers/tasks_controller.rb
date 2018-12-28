@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     end
 
     def edit
-        if @curr_user.lead 
+        if :project_lead?
             render 'edit'
         else
             if @task.employee
@@ -42,6 +42,15 @@ class TasksController < ApplicationController
     end
 
     def destroy
+        if :project_lead?
+            @task.comments.each do |comment|
+                comment.destroy
+            end
+            @task.destroy
+            redirect_to project_path(@task.project)
+        else
+            return head(:forbidden)
+        end
     end
 
     private

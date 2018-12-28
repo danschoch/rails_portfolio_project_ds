@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
         @curr_user = current_user
     end
 
+    def project_lead?
+        current_user.lead == true
+    end
+
     def in_organization?(org_id)
         org_id == session[:organization_id]
     end

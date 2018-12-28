@@ -76,10 +76,5 @@ class EmployeesController < ApplicationController
         @employee = Employee.find(params[:id])
         require_org_permission(@employee.organization_id)
     end
-
-    def project_lead?
-        current_user.lead == true
-    end
-
    
 end
