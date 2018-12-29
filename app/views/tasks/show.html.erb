@@ -20,6 +20,7 @@
 <p><%= @task.lead_notes %></p>
 
 <% if @curr_user.lead %>
+    <br><%= link_to 'Edit Task', edit_task_path(@task) %>
     <br><%= link_to 'Delete Task', task_path(@task), method: :delete, data: {confirm: "Are you sure you want to delete this task? This will also delete its comments."} %><br>
 <% end %>
 

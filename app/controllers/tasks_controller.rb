@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     before_action :set_user, only: [:show, :edit]
 
     def index
-        @task = Task.all
+        @tasks = Project.find(params[:project_id]).tasks
     end
     
     def new
@@ -25,14 +25,15 @@ class TasksController < ApplicationController
         if :project_lead?
             render 'edit'
         else
-            if @task.employee
-                @task.employee = nil
-                @task.save
+            if !@task.employee.nil?
+                @task.employee_id = nil
+                @task.update
+                redirect_to task_path(@task)
             else
-                @task.employee = @curr_user
-                @task.save
+                @task.employee_id = @curr_user.id
+                @task.update
+                redirect_to(@task)
             end
-            redirect_to task_path(@task)
         end
     end
 
