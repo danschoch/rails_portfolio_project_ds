@@ -4,11 +4,11 @@
 
 <%# TODO: REFACTOR %>
 <% if @task.status == "Unassigned" && !@curr_user.lead%>
-    <%= link_to 'Claim this Task', edit_task_path(@task) %>
+    <%= link_to 'Claim this Task', task_path(@task), method: 'patch' %>
 <% end %>
 <% if @task.status == "In Progress" %>
     <%if @task.employee == @curr_user %>
-        <%= link_to "Drop this Task", edit_task_path(@task) %>
+        <%= link_to "Drop this Task", task_path(@task), method: 'patch' %>
     <% else %>
         <h4>Assigned to <%= link_to @task.employee.full_name, employee_path(@task.employee) %> </h4>
     <% end %>

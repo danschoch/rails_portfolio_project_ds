@@ -23,24 +23,26 @@ class TasksController < ApplicationController
     end
 
     def edit
-        if :project_lead?
-            render 'edit'
-        else
-            if !@task.employee.nil?
-                @task.employee_id = nil
-                @task.update
-                redirect_to task_path(@task)
-            else
-                @task.employee_id = @curr_user.id
-                @task.update
-                redirect_to(@task)
-            end
-        end
     end
 
     def update
-        params[:task][:due_date] = flatten_date_array(params[:task])
-        @task.update(task_params)
+        #Normal CRUD update from project lead "edit task" view
+        if current_user.lead
+            params[:task][:due_date] = flatten_date_array(params[:task])
+            @task.update(task_params)
+        end
+        
+        #Claim or Drop Task from link in task#show view for employee
+        if !current_user.lead
+            if !@task.employee.nil?
+                @task.employee_id = nil
+                @task.save
+            else
+                @task.employee_id = current_user.id
+                @task.save
+            end
+        end
+
         redirect_to task_path(@task)
     end
 
