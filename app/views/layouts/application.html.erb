@@ -19,10 +19,12 @@
     
     <br>
     <br>
-<% if session[:employee_id] %>
+  <% if session[:employee_id] %>
     <%= link_to "Project Directory", projects_path %>
     <%= link_to "Employee Directory", organization_employees_path(session[:organization_id]) %>
     <%= link_to "Log Out", logout_path, method: :delete %>
+  <% else %>
+    <%= link_to "Home Page", root_path %>
   <% end %>
 
   </body>
