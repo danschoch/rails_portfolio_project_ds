@@ -1,3 +1,5 @@
 <h2>Edit This Employee:</h2>
 
+<%= render partial: 'layouts/error_message', locals: {object: @employee} %>
+
 <%= render partial: 'employees/form', locals: {url: employee_path(@employee), method: 'patch'} %>

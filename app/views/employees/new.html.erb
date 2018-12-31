@@ -1,3 +1,5 @@
 <h2>Create a New Employee:</h2>
 
+<%= render partial: 'layouts/error_message', locals: {object: @employee} %>
+
 <%= render partial: 'employees/form', locals: {url: {controller: 'employees', action: 'create'}, method: 'post'}  %>
