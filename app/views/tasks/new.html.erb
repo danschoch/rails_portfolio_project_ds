@@ -1,4 +1,4 @@
-<h1>Create A New Task for <%= @task.project.name %></h1>
+<h1>Create A New Task for <%= @project.name %></h1>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {url: {controller: 'tasks', action: 'create'}, method: 'post'} %>
 

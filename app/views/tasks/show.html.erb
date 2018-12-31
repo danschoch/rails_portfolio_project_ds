@@ -3,7 +3,7 @@
 <h3>Task Status: <%= @task.status%></h3>
 
 <%# TODO: REFACTOR %>
-<% if @task.status == "Unassigned"%>
+<% if @task.status == "Unassigned" && !@curr_user.lead%>
     <%= link_to 'Claim this Task', edit_task_path(@task) %>
 <% end %>
 <% if @task.status == "In Progress" %>
@@ -13,6 +13,8 @@
         <h4>Assigned to <%= link_to @task.employee.full_name, employee_path(@task.employee) %> </h4>
     <% end %>
 <% end %>
+
+<h3>Task due on: <%= due_date_formatted(@task) %></h3>
 
 <h3>Project Lead: <%= project_lead_name(@task.project) %></h3>
 

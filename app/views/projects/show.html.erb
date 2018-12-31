@@ -28,6 +28,10 @@
 <% end %>
 </ul><br>
 
+<% if @curr_user.lead %>
+    <%= link_to "Add a New Task", new_project_task_path(@project.id) %>
+<% end %>
+
 <h3>In Progress Tasks:</h3>
 <ul>
 <% @project.assigned_project_tasks.each do |task| %>

@@ -9,6 +9,7 @@ class TasksController < ApplicationController
     
     def new
         @task =Task.new
+        @project = Project.find(params[:project_id])
     end
 
     def create
@@ -38,8 +39,9 @@ class TasksController < ApplicationController
     end
 
     def update
+        params[:task][:due_date] = flatten_date_array(params[:task])
         @task.update(task_params)
-        redirect_to task_params(@task)
+        redirect_to task_path(@task)
     end
 
     def destroy
@@ -57,11 +59,15 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.require(:task).permit(:content, :lead_notes, :completed, :employee_id, :project_id)
+        params.require(:task).permit(:content, :lead_notes, :completed, :employee_id, :project_id, :due_date)
     end
 
     def set_task
         @task = Task.find(params[:id])
         require_org_permission(@task.project.organization_id)
+    end
+
+    def flatten_date_array(date_hash)
+        %w(1 2 3).map {|e| date_hash["date(#{e}i)"].to_i }
     end
 end

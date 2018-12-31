@@ -1,0 +1,9 @@
+<%= form_for @task, url: url, method: method do |f| %>
+    Select A Project for this Task: <%= f.collection_select(:project_id, Project.active_projects(session[:organization_id]), :id, :name) %>
+    Title: <%= f.text_field :content %>
+    Due Date: <%= f.date_select :due_date, default: Date.tomorrow %>
+    Notes for Employees: <%= f.text_area :lead_notes %>
+
+    <%= f.submit "Submit Task"%>
+   
+<% end %>
