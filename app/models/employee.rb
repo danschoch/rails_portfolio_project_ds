@@ -6,7 +6,7 @@ class Employee < ApplicationRecord
     has_many :projects, through: :tasks
     has_many :comments
 
-    validates :email, format: { with: /\A[a-zA-Z0-9.!\#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+\.[a-z](?:[a-z]{0,2}[a-z])\z/ } #presence: true, uniqueness: true
+    validates :email, format: { with: /\A[a-zA-Z0-9.!\#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+\.[a-z](?:[a-z]{0,2}[a-z])\z/ }, presence: true, uniqueness: true
     validates :first_name, presence: true
 
     def full_name
