@@ -4,7 +4,7 @@ module ProjectsHelper
         "#{lead.full_name}"
     end
 
-    def deadline_formatted(project)
+    def deadline_formatted(project) #TODO: delete this and replace with app_helper method
         project.due_date.strftime("%A, %b %e")
     end
 end
