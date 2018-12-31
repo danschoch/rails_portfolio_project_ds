@@ -1,3 +1,5 @@
 <h2>Edit This Task</h2>
 
+<%= render partial: 'layouts/error_message', locals: {object: @task} %>
+
 <%= render partial: 'form', locals: {url: {controller: 'tasks', action: 'update'}, method: 'patch'} %>

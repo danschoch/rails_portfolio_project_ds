@@ -13,8 +13,15 @@ class TasksController < ApplicationController
     end
 
     def create
-        @task = Task.create(task_params)
-        redirect_to task_path(@task)
+        binding.pry
+        @task = Task.new(task_params)
+        binding.pry
+        if @task.save
+            redirect_to task_path(@task)
+        else
+            @project = Project.find(params[:project_id])
+            render :new
+        end
     end
 
     def show
@@ -29,7 +36,11 @@ class TasksController < ApplicationController
         #Normal CRUD update from project lead "edit task" view
         if current_user.lead
             params[:task][:due_date] = flatten_date_array(params[:task])
-            @task.update(task_params)
+            if @task.update(task_params)
+                redirect_to task_path(@task)
+            else
+                render :edit
+            end
         end
         
         #Claim or Drop Task from link in task#show view for employee
@@ -41,9 +52,10 @@ class TasksController < ApplicationController
                 @task.employee_id = current_user.id
                 @task.save
             end
+
+            redirect_to task_path(@task)
         end
 
-        redirect_to task_path(@task)
     end
 
     def destroy

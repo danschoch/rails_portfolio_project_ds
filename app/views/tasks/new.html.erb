@@ -1,4 +1,6 @@
-<h1>Create A New Task for <%= @project.name %></h1>
+<h2>Create A New Task for <%= @project.name %></h2>
+
+<%= render partial: 'layouts/error_message', locals: {object: @task} %>
 
 <%= render partial: 'form', locals: {url: {controller: 'tasks', action: 'create'}, method: 'post'} %>
 
