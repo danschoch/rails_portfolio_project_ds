@@ -9,9 +9,12 @@ class CommentsController < ApplicationController
     end
 
     def create
-        comment = Comment.create(comment_params)
-        comment[:task_id] = params[:task_id]
-        redirect_to task_path(comment.task)
+        comment = Comment.new(comment_params)
+        if comment.save
+            redirect_to task_path(comment.task)
+        else
+            redirect_to task_path(params[:task_id]) #Could do flash message for no comment content
+        end
     end
 
     def show
