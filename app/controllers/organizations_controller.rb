@@ -7,8 +7,13 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        @new_org = Organization.create(organization_params)
-        redirect_to new_organization_employee_path(@new_org)
+        @new_org = Organization.new(organization_params)
+
+        if @new_org.save
+            redirect_to new_organization_employee_path(@new_org)
+        else
+            render 'static_pages/signup'
+        end
     end
 
     def show

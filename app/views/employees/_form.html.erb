@@ -1,6 +1,24 @@
-<%= form_for @employee, url: url, method: method do |f| %>
+<% if @employee.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@employee.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+ 
+    <ul>
+    <% @employee.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-    <%= f.hidden_field :organization_id, value: @organization.id%> <%# TODO: find out how to use :id from path %>    
+<%= form_for @employee, url: url, method: method do |f| %>
+    <% if params[:organization_id] %>
+        <%= f.hidden_field :organization_id, value: params[:organization_id] %>
+    <% else %>
+        <%= f.hidden_field :organization_id, value: @employee.organization_id %>
+    <% end %>
     
     Personal Information<br>
     First Name: <%= f.text_field :first_name %>

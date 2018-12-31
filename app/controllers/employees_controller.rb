@@ -13,7 +13,25 @@ class EmployeesController < ApplicationController
     end
 
     def create
-        @employee = Employee.create(employee_params)
+        @employee = Employee.new(employee_params)
+        @organization = Organization.find(params[:organization_id]) if params[:organization_id]
+        if @employee.save
+            if !session[:employee_id] #if valid data && there is no existing employee_id in session hash (i.e. creating first employee for new organization)
+                session[:employee_id] = @employee.id
+                session[:organization_id] = @employee.organization_id
+                redirect_to employee_path(@employee)
+            else # same as above, but there is an existing employee_id in session hash (i.e. project lead is creating new employee)
+                redirect_to employee_path(@employee) #TODO flash message that employee was successfully created
+            end
+        else
+            #if !session[:employee_id]
+                #@organization.destroy
+                #render 'static_pages/signup'
+            #else
+                render :new
+            #end (actually dont think I need this if statement... same page renders regardless)
+        end
+=begin
         if !session[:employee_id]
             if @employee && @employee.authenticate(params[:employee][:password])
                 session[:employee_id] = @employee.id
@@ -29,7 +47,7 @@ class EmployeesController < ApplicationController
                 redirect_to employee_path(@curr_user) #TODO: add flash message that new employee was not created
             end
         end
-
+=end
     end
 
     def show
@@ -47,9 +65,13 @@ class EmployeesController < ApplicationController
     end
 
     def update
+        @organization = Organization.find(session[:organization_id])
         if :project_lead?
-            @employee.update(employee_params)
-            redirect_to employee_path(@employee)
+            if @employee.update(employee_params)
+                redirect_to employee_path(@employee)
+            else
+                render :edit
+            end
         else
             return head(:forbidden)
         end

@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete :employee_id
+        session.delete :organization_id
         redirect_to root_path
     end
 
