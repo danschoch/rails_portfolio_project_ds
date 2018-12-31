@@ -20,10 +20,23 @@ class ProjectsController < ApplicationController
     end
 
     def edit
+        if :project_lead?
+            render "edit"
+        else
+            return head(:forbidden)
+        end
     end
 
     def update
-        redirect_to project_path(@project)
+        if :project_lead?
+            if @project.update(project_params)
+                redirect_to project_path(@project)
+            else
+                render :edit
+            end
+        else
+            return head(:forbidden)
+        end
     end
 
     def destroy

@@ -3,6 +3,6 @@
     <%= f.hidden_field :organization_id, value: @curr_user.organization.id%>
     Project Name: <%= f.text_field :name %>
     Description: <%= f.text_area :description %>
-    Due Date: <%= f.date_select :due_date, default: Date.tomorrow %>
-    <%= f.submit "Create Project" %>
+    Due Date: <%= f.date_select :due_date, default: Date.today %>
+    <%= f.submit "Submit Project" %>
 <% end %>
