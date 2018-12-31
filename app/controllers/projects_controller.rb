@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
     before_action :require_login
     before_action :set_project, only: [:show, :edit, :update, :destroy]
-    before_action :set_user, only:[:index, :new, :edit, :show]
+    before_action :set_user, only:[:index, :new, :create, :edit, :update, :show]
 
     def index
         @projects = Project.active_projects(Employee.find(session[:employee_id]).organization.id)
@@ -12,8 +12,12 @@ class ProjectsController < ApplicationController
     end
 
     def create
-        project = Project.create(project_params)
-        redirect_to project_path(project)
+        @project = Project.new(project_params)
+        if @project.save
+            redirect_to project_path(project)
+        else
+            render :new
+        end
     end
 
     def show

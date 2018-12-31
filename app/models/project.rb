@@ -4,6 +4,8 @@ class Project < ApplicationRecord
     has_many :employees, through: :tasks
     has_many :comments, through: :tasks
 
+    validates :name, presence: true
+
     def unassigned_project_tasks
         self.tasks.select {|task| task.status == "Unassigned"}
     end
