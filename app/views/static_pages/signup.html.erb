@@ -1,5 +1,5 @@
 <h1> Sign Up Here</h1>
 
-<%= render 'organizations/form' %>
+<%= render partial: 'layouts/error_message', locals: {object: @new_org} %>
 
-<%# link_to 'Continue to Create Employee Profile', new_organization_employee_path(@organization)  %>
+<%= render 'organizations/form' %>
