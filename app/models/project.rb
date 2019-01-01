@@ -19,7 +19,7 @@ class Project < ApplicationRecord
     end
 
     def self.active_project_ids(org_id)
-        where(organization_id: Employee.find(org_id)).pluck(:id)
+        where(organization_id: Organization.find(org_id)).pluck(:id)
     end
 
     def self.active_projects(org_id)

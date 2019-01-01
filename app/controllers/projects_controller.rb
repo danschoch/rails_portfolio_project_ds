@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
     before_action :set_user, only:[:index, :new, :create, :edit, :update, :show]
 
     def index
-        @projects = Project.active_projects(Employee.find(session[:employee_id]).organization.id)
+        @projects = Project.active_projects(session[:organization_id])
     end
     
     def new
@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
         if @project.save
-            redirect_to project_path(project)
+            redirect_to project_path(@project)
         else
             render :new
         end
