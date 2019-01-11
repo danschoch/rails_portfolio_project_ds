@@ -17,9 +17,6 @@
         <h4>Assigned to <%= link_to @task.employee.full_name, employee_path(@task.employee) %> </h4>
     <% end %>
 <% end %>
-<% if @task.completed %>
-    <%# Add complete code here%>
-<% end %>
 
 
 <h3>Task due on: <%= due_date_formatted(@task) %></h3>
