@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
 
     def project_lead?
-        current_user.lead == true
+        current_user.lead
     end
 
     def in_organization?(org_id)

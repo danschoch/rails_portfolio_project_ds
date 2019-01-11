@@ -2,7 +2,7 @@
 
 <h3>Task Status: <%= @task.status%></h3>
 
-<%# TODO: REFACTOR %>
+<%# TODO: REFACTOR - All forms? Take logic out of controller? %>
 <% if @task.status == "Unassigned" && !@curr_user.lead%>
     <%= link_to 'Claim this Task', task_path(@task), method: 'patch' %>
 <% end %>
