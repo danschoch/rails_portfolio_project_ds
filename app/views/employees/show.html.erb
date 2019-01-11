@@ -11,14 +11,10 @@ Set up separate partial for this%>
 <h3>Email:</h3>
 <h4><%= @employee.email %></h4>
 
-<%# TODO: Make this cleaner - Maybe display only if lead = true
-"Project lead for #{project title}" or similar %>
 <h3>Project Lead?</h3>
 <h4><%= @employee.lead %></h4><br>
 
 <h2>Currently Working On:</h2>
-<%# TODO: List of tasks belonging to user
-"Project Name - task.content - due date" %>
 <ul>
 <% @assigned.each do |task| %>
    <li><%= task_formatted(task) %></li>
@@ -26,8 +22,6 @@ Set up separate partial for this%>
 </ul>
 
 <h2>Recently Completed:</h2>
-<%# TODO: List of previous tasks completed by user, limit 5 
-"Project Name - task.content - completed date"%>
 <ul>
 <% @completed.each do |task| %>
    <li><%= task_formatted(task) %></li>

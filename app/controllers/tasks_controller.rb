@@ -41,12 +41,20 @@ class TasksController < ApplicationController
             end
         end
         
-        #Claim or Drop Task from link in task#show view for employee
+        #Claim, Complete, or Drop Task from link in task#show view for employee
         if !current_user.lead
+            #Drop Task
             if !@task.employee.nil?
-                @task.employee_id = nil
-                @task.save
+                #Complete Task
+                if params[:task]
+                    @task.update(task_params)
+                #Drop Task
+                else
+                    @task.employee_id = nil
+                    @task.save
+                end
             else
+                #Claim Task
                 @task.employee_id = current_user.id
                 @task.save
             end
