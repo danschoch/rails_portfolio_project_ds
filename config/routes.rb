@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/sessions/create', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/employees/ofthemonth', to: 'employees#month'
   
   resources :organizations do
     resources :employees, shallow: true

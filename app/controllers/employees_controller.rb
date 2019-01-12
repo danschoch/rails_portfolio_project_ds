@@ -89,6 +89,11 @@ class EmployeesController < ApplicationController
         end
     end
 
+    def month
+        org = Organization.find(session[:organization_id])
+        @emp_month = org.employees.most_completed_tasks
+    end
+
     private
 
     def employee_params

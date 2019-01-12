@@ -24,6 +24,13 @@ class Employee < ApplicationRecord
             task.completed == true
         end
     end
+    
+
+    def self.most_completed_tasks
+        self.all.sort_by {|emp| emp.completed_tasks.count }.last
+    end
+
+
 
     private
 
