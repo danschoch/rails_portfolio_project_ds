@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     def create
         comment = Comment.new(comment_params)
         if comment.save
-            redirect_to task_path(comment.task)
+            render json: comment, status: 201
         else
             redirect_to task_path(params[:task_id]) #Could do flash message for no comment content
         end

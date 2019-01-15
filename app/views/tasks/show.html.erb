@@ -35,6 +35,8 @@
 <%= render 'comments/form' %><br>
 
 <h4>Comments:</h4>
+<% 
+=begin %>
 <ol>
 <% @comments.each do |comment| %>
     <li>
@@ -43,37 +45,10 @@
     </li>
 <% end %>
 </ol>
-
-
-<div id='comments'>
-<ol id='commentList'>
-</ol>
-</div>
+<% 
+=end %>
 
 <h4><%= link_to "Back to Current Project", project_path(@task.project) %></h4>
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $('form').submit(function(event) {
-      //prevent form from submitting the default way
-      event.preventDefault();
- 
-      var values = $(this).serialize();
- 
-      var commenting = $.post(`/tasks/${}/comments`, values);
- 
-      commenting.done(function(data) {
-        var comment = data;
-
-        var listHTML = "<li><span id='commentContent'></span><br>Posted By: <span id='commentAuthor'></span></li>"
-            
-        $("#commentList").append(listHTML);
-        $("#commentContent").text(comment["content"]);
-        $("#commentAuthor").text(comment["employee"]["first_name"]);
-      });
-    });
-  });
-</script>
 
 
 

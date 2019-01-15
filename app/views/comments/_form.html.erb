@@ -1,6 +1,39 @@
-<%= form_for @comment, url: task_comments_path(@task.id, @comment) do |f| %>
+<%= form_for @comment do |f| %>
     <%= f.hidden_field :employee_id, value: @curr_user.id%>
     <%= f.hidden_field :task_id, value: @task.id%>
     <%= f.text_area :content %>
     <%= f.submit "Submit Comment" %>
 <% end %>
+
+<div id='comments'>
+<ol id='commentList'>
+</ol>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      alert("On the right path");
+
+ 
+      var values = $(this).serialize();
+ 
+      var commenting = $.post(`/tasks/${params[:task_id]}/comments`, values);
+ 
+      commenting.done(function(data) {
+        var comment = data;
+
+        var listHTML = "<li><span id='commentContent'></span><br>Posted By: <span id='commentAuthor'></span></li>"
+            
+        $("#commentList").append(listHTML);
+        $("#commentContent").text(comment["content"]);
+        $("#commentAuthor").text(comment["employee"]["first_name"]);
+      });
+    });
+  });
+</script>
+
+<%# code from pre-JS version of app... delete before merging with master branch %>
+<%#  ,url: task_comments_path(@task.id, @comment)%>

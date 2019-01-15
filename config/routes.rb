@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :projects, shallow: true do
-    resources :tasks do
-      resources :comments
-    end
+    resources :tasks
   end
+
+  post '/comments', to: 'comments#create'
   
 end
