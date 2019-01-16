@@ -3,6 +3,7 @@ if @employee = current_user, show Welcome back!
 if @employee != current_user, show Now Viewing:
 Set up separate partial for this%>
 
+<div>
 <h1 id="empGreeting"></h1>
 
 <div id="empBasicInfo">
@@ -48,10 +49,11 @@ Set up separate partial for this%>
 <% if @employee == @curr_user %>
     <%= link_to 'Edit Your Profile', edit_employee_path(@employee) %>
 <% end %>
+</div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $.get("/employees/<%=params[:id]%>.json", function(data) {
+    $.get("/employees/<%=params[:id]%>.json", (data) => {
         console.log(data);
         showBasicInfo(data);
     });

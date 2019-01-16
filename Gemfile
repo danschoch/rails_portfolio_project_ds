@@ -9,6 +9,8 @@ gem 'dotenv-rails'
 gem 'thin', '~> 1.7'
 gem 'active_model_serializers'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'execjs'
+gem 'therubyracer'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

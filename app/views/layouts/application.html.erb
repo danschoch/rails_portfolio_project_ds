@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>" >
   <% if session[:employee_id] %>
     <h1>Welcome to Roundtable Task Management for <%= curr_employee.organization.name %></h1>
     <h3>Currently Logged In As: <%= link_to curr_employee_name, employee_path(curr_employee) %></h3>
@@ -28,4 +28,5 @@
   <% end %>
 
   </body>
+
 </html>
