@@ -1,9 +1,3 @@
-<%# TODO: Greeting Control Flow
-if @employee = current_user, show Welcome back!
-if @employee != current_user, show Now Viewing:
-Set up separate partial for this%>
-
-<div>
 <h1 id="empGreeting"></h1>
 
 <div id="empBasicInfo">
@@ -19,18 +13,10 @@ Set up separate partial for this%>
 
 <div id='empTasks'>
     <h2>Currently Working On:</h2>
-    <ul id="empAssignedTasks">
-        <% @assigned.each do |task| %>
-        <li><%= task_formatted(task) %></li>
-        <% end %>
-    </ul>
+    <ul id="empAssignedTasks"></ul>
 
     <h2>Recently Completed:</h2>
-    <ul id="empCompletedTasks">
-        <% @completed.each do |task| %>
-        <li><%= task_formatted(task) %></li>
-        <% end %>
-    </ul>
+    <ul id="empCompletedTasks"></ul>
 </div>
 
 <div id="leadPanel">
@@ -49,13 +35,13 @@ Set up separate partial for this%>
 <% if @employee == @curr_user %>
     <%= link_to 'Edit Your Profile', edit_employee_path(@employee) %>
 <% end %>
-</div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $.get("/employees/<%=params[:id]%>.json", (data) => {
         console.log(data);
         showBasicInfo(data);
+        showTasks(data);
     });
     
     var showBasicInfo = (data) => {
@@ -69,6 +55,23 @@ Set up separate partial for this%>
         $('#empEmail').html(`${data.email}`);
         $('#empTitle').html(`${data.title}`);
         $('#empLead').html(`${data.lead.toString()}`);
+    };
+
+    var showTasks = (data) => {
+        let tasks = data.tasks
+
+        const taskHTML = (taskData) => {return `
+        <li>${taskData.content} - Project: ${taskData.project.name} - ${taskData.due_date}</li>
+        `}
+        
+
+        tasks.forEach((task) => {
+            if (task.completed === true) {
+                $('#empCompletedTasks').append(taskHTML(task));
+            } else {
+                $('#empAssignedTasks').append(taskHTML(task));
+        }
+        });
     };
   });
 </script>
