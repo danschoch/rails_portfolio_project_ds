@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  post '/comments', to: 'comments#create'
+  resources :comments, only: [:new, :create, :show]
   
 end

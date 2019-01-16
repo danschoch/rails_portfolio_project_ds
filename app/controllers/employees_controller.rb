@@ -53,6 +53,9 @@ class EmployeesController < ApplicationController
     def show
         @assigned = @employee.assigned_tasks
         @completed = @employee.completed_tasks
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render json: @employee, status: 201}
     end
 
     def edit

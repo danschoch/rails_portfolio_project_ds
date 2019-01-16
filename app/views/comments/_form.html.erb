@@ -2,7 +2,7 @@
     <%= f.hidden_field :employee_id, value: @curr_user.id%>
     <%= f.hidden_field :task_id, value: @task.id%>
     <%= f.text_area :content %>
-    <%= f.submit "Submit Comment" %>
+    <%= f.submit %>
 <% end %>
 
 <div id='comments'>
@@ -12,17 +12,17 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $('form').submit(function(event) {
+    $('#new_comment').submit(function(event) {
       //prevent form from submitting the default way
       event.preventDefault();
-      alert("On the right path");
 
- 
+    
       var values = $(this).serialize();
  
-      var commenting = $.post(`/tasks/${params[:task_id]}/comments`, values);
+      var commenting = $.post('/comments.json', values);
  
       commenting.done(function(data) {
+          debugger
         var comment = data;
 
         var listHTML = "<li><span id='commentContent'></span><br>Posted By: <span id='commentAuthor'></span></li>"
@@ -31,6 +31,7 @@
         $("#commentContent").text(comment["content"]);
         $("#commentAuthor").text(comment["employee"]["first_name"]);
       });
+
     });
   });
 </script>

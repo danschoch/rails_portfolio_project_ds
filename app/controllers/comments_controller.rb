@@ -18,6 +18,8 @@ class CommentsController < ApplicationController
     end
 
     def show
+        comment = Comment.find(params[:id])
+        render json: comment, status: 200
     end
 
     def edit
