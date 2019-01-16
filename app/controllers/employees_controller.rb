@@ -24,30 +24,8 @@ class EmployeesController < ApplicationController
                 redirect_to employee_path(@employee) #TODO flash message that employee was successfully created
             end
         else
-            #if !session[:employee_id]
-                #@organization.destroy
-                #render 'static_pages/signup'
-            #else
-                render :new
-            #end (actually dont think I need this if statement... same page renders regardless)
+            render :new
         end
-=begin
-        if !session[:employee_id]
-            if @employee && @employee.authenticate(params[:employee][:password])
-                session[:employee_id] = @employee.id
-                session[:organization_id] = @employee.organization_id
-                redirect_to employee_path(@employee) #TODO DRY this code
-            else
-                redirect_to login_path #TODO add flash message that login was denied
-            end
-        else
-            if @employee && @employee.authenticate(params[:employee][:password])
-                redirect_to employee_path(@employee)
-            else
-                redirect_to employee_path(@curr_user) #TODO: add flash message that new employee was not created
-            end
-        end
-=end
     end
 
     def show
@@ -56,6 +34,7 @@ class EmployeesController < ApplicationController
         respond_to do |format|
             format.html { render :show }
             format.json { render json: @employee, status: 201}
+        end
     end
 
     def edit

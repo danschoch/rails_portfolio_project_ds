@@ -2,6 +2,11 @@ class CommentsController < ApplicationController
     before_action :require_login
 
     def index
+        @comments = Comment.all.select{|comment| comment.task_id.to_s == params[:task_id]}.last(10)
+        respond_to do |format|
+            format.html { render "/projects" }
+            format.json { render json: @comments, status:201 }
+        end
     end
     
     def new

@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  resources :comments, only: [:new, :create, :show]
+  resources :comments, only: [:index, :new, :create, :show]
   
 end

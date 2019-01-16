@@ -6,34 +6,38 @@
 <% end %>
 
 <div id='comments'>
-<ol id='commentList'>
-</ol>
+    <ol id='commentList'>
+    </ol>
 </div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
+    showComments();
     $('#new_comment').submit(function(event) {
-      //prevent form from submitting the default way
       event.preventDefault();
 
-    
       var values = $(this).serialize();
  
-      var commenting = $.post('/comments.json', values);
+      var commenting = $.post("/comments.json", values);
  
-      commenting.done(function(data) {
-          debugger
-        var comment = data;
-
-        var listHTML = "<li><span id='commentContent'></span><br>Posted By: <span id='commentAuthor'></span></li>"
-            
-        $("#commentList").append(listHTML);
-        $("#commentContent").text(comment["content"]);
-        $("#commentAuthor").text(comment["employee"]["first_name"]);
+      commenting.done(function() {
+        showComments();
+        $("input[type=submit]").removeAttr("disabled");
       });
-
     });
+
   });
+
+  var showComments = () => {
+      $.get("/comments.json", {task_id: "<%= @task.id %>"}, function(data) {
+          data.forEach(comment => {
+              $("#commentList").append(
+                `<li><span id='commentContent'>${comment.content}</span><br>
+                Posted By: <span id='commentAuthor'>${comment.employee.first_name}</span></li>`
+              );
+          });
+      });
+  }
 </script>
 
 <%# code from pre-JS version of app... delete before merging with master branch %>
