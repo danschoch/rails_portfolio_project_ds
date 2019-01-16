@@ -57,10 +57,16 @@ Set up separate partial for this%>
     });
     
     var showBasicInfo = (data) => {
-         $('#empGreeting').html(`Hi, ${data.first_name}`);
-         $('#empEmail').html(`${data.email}`);
-         $('#empTitle').html(`${data.title}`);
-         $('#empLead').html(`${data.lead.toString()}`);
+        (function(data) {
+            if (data.id.toString() === "<%= @curr_user.id %>") {
+                $('#empGreeting').html(`Hi, ${data.first_name}`);
+            } else {
+                $('#empGreeting').html(`Info for ${data.first_name + ' ' + data.last_name}`);
+            }
+        })(data);
+        $('#empEmail').html(`${data.email}`);
+        $('#empTitle').html(`${data.title}`);
+        $('#empLead').html(`${data.lead.toString()}`);
     };
   });
 </script>
