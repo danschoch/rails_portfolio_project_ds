@@ -10,9 +10,10 @@
     </ol>
 </div>
 
+
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    showComments();
+    //Event Listener for new comment submission
     $('#new_comment').submit(function(event) {
       event.preventDefault();
 
@@ -21,23 +22,39 @@
       var commenting = $.post("/comments.json", values);
  
       commenting.done(function() {
+        clearComments();
         showComments();
+        //Clear new comment form text box and reactivate submit button
+        $("#comment_content").val('');
         $("input[type=submit]").removeAttr("disabled");
       });
     });
+  
+    //Function Declaration to display comments (using JS model objects from assets/javascripts files)
+    var showComments = () => {
+      $.get("/comments.json", {task_id: "<%= @task.id %>"}, function(data) {
+        data.forEach(comment => {
+          let newEmployee = new Employee(comment.employee.first_name, comment.employee.last_name, comment.task);
+          let newComment = new Comment(comment.content, comment.employee, comment.task);
+        
+          $("#commentList").append(
+            `<li>${newComment.content}<br>
+            Posted By: ${newEmployee.fullName()}</li>`
+          );
 
+        });
+      });
+    }
+
+    //Function Declartion to clear comments (used after new comment submit before showing all comments again)
+    var clearComments = () => {
+      $("#commentList").empty();
+    }
+
+    //Initial call to show current comments on document(ready)
+    showComments();
   });
 
-  var showComments = () => {
-      $.get("/comments.json", {task_id: "<%= @task.id %>"}, function(data) {
-          data.forEach(comment => {
-              $("#commentList").append(
-                `<li><span id='commentContent'>${comment.content}</span><br>
-                Posted By: <span id='commentAuthor'>${comment.employee.first_name}</span></li>`
-              );
-          });
-      });
-  }
 </script>
 
 <%# code from pre-JS version of app... delete before merging with master branch %>
