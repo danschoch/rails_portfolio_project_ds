@@ -3,10 +3,10 @@ class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+}
 
-    fullName() {
-        return `${this.firstName} ${this.lastName}`
-    }
+Employee.prototype.fullName = function() {
+    return `${this.firstName} ${this.lastName}`
 }
 
 
