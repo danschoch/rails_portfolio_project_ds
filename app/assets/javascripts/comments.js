@@ -26,14 +26,18 @@ $(function () {
             });
         });
         
-        //Function Declaration to display comments (using JS model objects from assets/javascripts files)
+        //Function Declaration to display comments (using JS model objects)
         var showComments = () => {
+/*
+            //add {task_id: taskId} back into get request below if data from application layout doesn't connect
             const path = window.location.pathname
             const taskIdRegEx = /[0-9]/g
 
             let taskId = path.match(taskIdRegEx).join('')
+*/
+            let taskId = $('.tasks.show')[0].dataset.id;
 
-            $.get("/comments.json", {task_id: taskId}, function(data) {
+            $.get("/comments.json",{task_id: taskId}, function(data) {
                 data.forEach(comment => {
                     let newEmployee = new Employee(comment.employee.first_name, comment.employee.last_name, comment.task);
                     let newComment = new Comment(comment.content, comment.employee, comment.task);

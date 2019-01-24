@@ -18,15 +18,17 @@ $(function () {
         });
     
         var showBasicInfo = (data) => {
+            let userId = $('.employees.show')[0].dataset.currUserId;
+            
+            // Greeting Conditional
             (function(data) {
-                //TODO: Fix this greeting conditional
-                if (data.id.toString() === "<%= @curr_user.id %>") {
+                if (data.id.toString() === userId) {
                     $('#empGreeting').html(`Hi, ${data.first_name}`);
                 } else {
                     $('#empGreeting').html(`Info for ${data.first_name + ' ' + data.last_name}`);
                 }
             })(data);
-
+            
             $('#empEmail').html(`${data.email}`);
             $('#empTitle').html(`${data.title}`);
             $('#empLead').html(`${data.lead.toString()}`);
