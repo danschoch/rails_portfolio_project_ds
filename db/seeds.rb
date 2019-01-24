@@ -30,20 +30,19 @@ emp6.save
 
 #Projects
 
-draft = Project.create(name: "Draft Preparation", due_date: DateTime.new.at_midnight, lead_id: emp2.id, description: "Getting Ready for the 2019 draft", organization_id: lakers.id)
-game = Project.create(name: "Game Preparation", due_date: DateTime.new.at_noon, lead_id: emp3.id, description: "Make sure we're good to go for the next gamer", organization_id: lakers.id)
-web = Project.create(name: "Update Team Website", due_date: DateTime.new.at_noon, lead_id: emp1.id, description: "Migrate team website to react and rails", organization_id: lakers.id)
+draft = Project.create(name: "Draft Preparation", due_date: DateTime.now + 70.days, lead_id: emp2.id, description: "Getting Ready for the 2019 draft", organization_id: lakers.id)
+game = Project.create(name: "Game Preparation", due_date: DateTime.now + 5.days, lead_id: emp3.id, description: "Make sure we're good to go for the next gamer", organization_id: lakers.id)
+web = Project.create(name: "Update Team Website", due_date: DateTime.now + 30.days, lead_id: emp1.id, description: "Migrate team website to react and rails", organization_id: lakers.id)
 
 
 #Tasks
 
-Task.create(content: "Scout College Players", lead_notes: "Check out Duke first.... Zion looks really good", completed: false, project_id: draft.id, employee_id: emp6.id)
-Task.create(content: "Update draft board", lead_notes: "Get it done soon.... draft coming up", completed: false, project_id: draft.id)
-Task.create(content: "Watch tape", lead_notes: "Focus on James Harden", completed: true, project_id: game.id, employee_id: emp4.id)
-Task.create(content: "Get treatment", lead_notes: "Gotta get back in the game", completed: false, project_id: game.id, employee_id: emp4.id)
-Task.create(content: "Do design mockup", lead_notes: "Need some ideas for the new look", completed: false, project_id: web.id)
-Task.create(content: "Migrate database", lead_notes: "Don't mess this up. Need that data.", completed: false, project_id: web.id)
-
-Task.create(content: "Create React Components for landing page", lead_notes: "Landing page needs to be done first. This is priority to other pages", completed: false, project_id: web.id, employee_id: emp5.id)
+Task.create(content: "Scout College Players", lead_notes: "Check out Duke first.... Zion looks really good", completed: false, project_id: draft.id, employee_id: emp6.id, due_date: DateTime.now + 30.days)
+Task.create(content: "Update draft board", lead_notes: "Get it done soon.... draft coming up", completed: false, project_id: draft.id, due_date: DateTime.now + 54.days)
+Task.create(content: "Watch tape", lead_notes: "Focus on James Harden", completed: true, project_id: game.id, employee_id: emp4.id,due_date: DateTime.now + 2.days)
+Task.create(content: "Get treatment", lead_notes: "Gotta get back in the game", completed: false, project_id: game.id, employee_id: emp4.id, due_date: DateTime.now + 2.days)
+Task.create(content: "Do design mockup", lead_notes: "Need some ideas for the new look", completed: false, project_id: web.id, due_date: DateTime.now + 20.days)
+Task.create(content: "Migrate database", lead_notes: "Don't mess this up. Need that data.", completed: false, project_id: web.id, due_date: DateTime.now + 15.days)
+Task.create(content: "Create React Components for landing page", lead_notes: "Landing page needs to be done first. This is priority to other pages", completed: false, project_id: web.id, employee_id: emp5.id, due_date: DateTime.now + 29.days)
 
 #Comments
