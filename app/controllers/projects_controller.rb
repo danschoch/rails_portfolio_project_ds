@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
     before_action :set_user, only:[:index, :new, :create, :edit, :update, :show]
 
     def index
-        @projects = Project.active_projects(session[:organization_id])
+        @projects = Project.active_projects(params[:organization_id]) if params[:organization_id]
+        respond_to do |format|
+            format.html { render "/projects/index" }
+            format.json { render json: @projects, status:201 }
+        end
     end
     
     def new
