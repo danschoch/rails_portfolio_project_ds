@@ -17,8 +17,8 @@ $(function () {
             showTasks(data);
         });
     
-        var showBasicInfo = (data) => {
-            let userId = $('.employees.show')[0].dataset.currUserId;
+        const showBasicInfo = (data) => {
+            const userId = $('.employees.show')[0].dataset.currUserId;
             
             // Greeting Conditional
             (function(data) {
@@ -34,8 +34,8 @@ $(function () {
             $('#empLead').html(`${data.lead.toString()}`);
         };
 
-        var showTasks = (data) => {
-            let tasks = data.tasks
+        const showTasks = (data) => {
+            const tasks = data.tasks
 
             const taskHTML = (taskData) => {return `
             <li>${taskData.content} - Project: ${taskData.project.name} - ${taskData.due_date}</li>

@@ -12,9 +12,9 @@ $(function () {
         $('#new_comment').submit(function(event) {
             event.preventDefault();
     
-            var values = $(this).serialize();
+            const values = $(this).serialize();
     
-            var commenting = $.post("/comments.json", values);
+            const commenting = $.post("/comments.json", values);
     
             commenting.done(function() {
                 clearComments();
@@ -27,15 +27,8 @@ $(function () {
         });
         
         //Function Declaration to display comments (using JS model objects)
-        var showComments = () => {
-/*
-            //add {task_id: taskId} back into get request below if data from application layout doesn't connect
-            const path = window.location.pathname
-            const taskIdRegEx = /[0-9]/g
-
-            let taskId = path.match(taskIdRegEx).join('')
-*/
-            let taskId = $('.tasks.show')[0].dataset.id;
+        const showComments = () => {
+            const taskId = $('.tasks.show')[0].dataset.id;
 
             $.get("/comments.json",{task_id: taskId}, function(data) {
                 data.forEach(comment => {
@@ -52,7 +45,7 @@ $(function () {
         }
     
         //Function Declartion to clear comments (used after new comment submit before showing all comments again)
-        var clearComments = () => {
+        const clearComments = () => {
             $("#commentList").empty();
         }
     
