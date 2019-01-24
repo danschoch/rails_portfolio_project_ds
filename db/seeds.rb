@@ -8,33 +8,42 @@
 
 #Organizations
 
-Organization.create(name: "Trump Organization")
-Organization.create(name: "Campaign")
-
-#Projects
-
-Project.create(name: "Trump Tower Moscow", due_date: DateTime.new.at_midnight, lead_id: 3, description: "corrupt new fancy tower", organization_id: 1)
-Project.create(name: "Campaign", due_date: DateTime.new.at_noon, lead_id: 3, description: "corrupt new fancy tower", organization_id: 1)
-Project.create(name: "MAGA", due_date: DateTime.new.at_noon, lead_id: 4, description: "Made it pretty self-explanatory, didn't I?", organization_id: 2)
-
+lakers = Organization.create(name: "Los Angeles Lakers")
+knicks = Organization.create(name: "New York Knicks")
 
 #Employees
 
-emp1 = Employee.new(first_name: "Eric", last_name: "Cartman", title: "Developer", lead: false, email: "lame@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: 1)
-emp2 = Employee.new(first_name: "Ivanna", last_name: "Thump", title: "Wannabe", lead: false, email: "bogus@fake.com", password_digest: BCrypt::Password.create("password"), organization_id: 1)
-emp3 = Employee.new(first_name: "Don", last_name: "Julio", title: "Junior Dev", lead: true, email: "extralame@yahoo.com", password_digest: BCrypt::Password.create("password"), organization_id: 1)
-emp4= Employee.new(first_name: "Paul", last_name: "Boyabase", title: "Chairman", lead: true, email: "iheartrussia@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: 2)
+emp1 = Employee.new(first_name: "Jeanie", last_name: "Buss", title: "Owner", lead: true, email: "jeanie@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: lakers.id)
+emp2 = Employee.new(first_name: "Magic", last_name: "Johnson", title: "President", lead: true, email: "magic@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: lakers.id)
+emp3 = Employee.new(first_name: "Luke", last_name: "Walton", title: "Coach", lead: true, email: "luke@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: lakers.id)
+emp6 = Employee.new(first_name: "Brian", last_name: "Shaw", title: "Asst. Coach", lead: false, email: "brian@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: lakers.id)
+emp4 = Employee.new(first_name: "Lebron", last_name: "James", title: "Captain", lead: false, email: "lebron@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: lakers.id)
+emp5 = Employee.new(first_name: "Dan", last_name: "Schoch", title: "Junior Developer", lead: false, email: "d.schoch90@gmail.com", password_digest: BCrypt::Password.create("password"), organization_id: lakers.id)
 
 
 emp1.save
 emp2.save
 emp3.save
 emp4.save
+emp5.save
+emp6.save
+
+#Projects
+
+draft = Project.create(name: "Draft Preparation", due_date: DateTime.new.at_midnight, lead_id: emp2.id, description: "Getting Ready for the 2019 draft", organization_id: lakers.id)
+game = Project.create(name: "Game Preparation", due_date: DateTime.new.at_noon, lead_id: emp3.id, description: "Make sure we're good to go for the next gamer", organization_id: lakers.id)
+web = Project.create(name: "Update Team Website", due_date: DateTime.new.at_noon, lead_id: emp1.id, description: "Migrate team website to react and rails", organization_id: lakers.id)
+
 
 #Tasks
 
-Task.create(content: "Pay off some people", lead_notes: "Use the charity money", completed: false, project_id: 1, employee_id: 1)
-Task.create(content: "Talk to Putin", lead_notes: "Don't use email or phones, please", completed: true, project_id: 1)
-Task.create(content: "Find land", lead_notes: "Find out where exactly Moscow is...", completed: false, project_id: 1, employee_id: nil)
+Task.create(content: "Scout College Players", lead_notes: "Check out Duke first.... Zion looks really good", completed: false, project_id: draft.id, employee_id: emp6.id)
+Task.create(content: "Update draft board", lead_notes: "Get it done soon.... draft coming up", completed: false, project_id: draft.id)
+Task.create(content: "Watch tape", lead_notes: "Focus on James Harden", completed: true, project_id: game.id, employee_id: emp4.id)
+Task.create(content: "Get treatment", lead_notes: "Gotta get back in the game", completed: false, project_id: game.id, employee_id: emp4.id)
+Task.create(content: "Do design mockup", lead_notes: "Need some ideas for the new look", completed: false, project_id: web.id)
+Task.create(content: "Migrate database", lead_notes: "Don't mess this up. Need that data.", completed: false, project_id: web.id)
+
+Task.create(content: "Create React Components for landing page", lead_notes: "Landing page needs to be done first. This is priority to other pages", completed: false, project_id: web.id, employee_id: emp5.id)
 
 #Comments
