@@ -30,7 +30,8 @@ $(function () {
         const showComments = () => {
             const taskId = $('.tasks.show')[0].dataset.id;
 
-            $.get("/comments.json",{task_id: taskId}, function(data) {
+            $.get("/comments",{task_id: taskId}, function(data) {
+                const dataSorted = data.sort(alphabetize)
                 data.forEach(comment => {
                     let newEmployee = new Employee(comment.employee.first_name, comment.employee.last_name, comment.task);
                     let newComment = new Comment(comment.content, comment.employee, comment.task);
@@ -41,7 +42,20 @@ $(function () {
                     );
         
                 });
-            });
+            }, "json");
+        }
+
+        const alphabetize = (a, b) => {
+            var contentA = a.content.toUpperCase(); // ignore upper and lowercase
+            var contentB = b.content.toUpperCase(); // ignore upper and lowercase
+            if (contentA < contentB) {
+                return -1;
+            }
+            if (contentA > contentB) {
+                return 1;
+            }
+            // names must be equal
+            return 0;
         }
     
         //Function Declartion to clear comments (used after new comment submit before showing all comments again)
