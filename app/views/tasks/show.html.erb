@@ -35,18 +35,10 @@
 <%# add button to render form via ajax %>
 <%= render 'comments/form' %><br>
 
-<% 
-=begin %>
-<ol>
-<% @comments.each do |comment| %>
-    <li>
-    <%= comment.content %><br>
-    Posted By: <%= comment.employee.full_name if comment.employee %>
-    </li>
-<% end %>
-</ol>
-<% 
-=end %>
+<div id='comments'>
+    <ol id='commentList'>
+    </ol>
+</div>
 
 <h4><%= link_to "Back to Current Project", project_path(@task.project) %></h4>
 
