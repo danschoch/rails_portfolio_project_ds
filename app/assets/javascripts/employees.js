@@ -19,6 +19,7 @@ $(function () {
     
         var showBasicInfo = (data) => {
             (function(data) {
+                //TODO: Fix this greeting conditional
                 if (data.id.toString() === "<%= @curr_user.id %>") {
                     $('#empGreeting').html(`Hi, ${data.first_name}`);
                 } else {
