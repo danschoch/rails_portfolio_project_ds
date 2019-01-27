@@ -6,7 +6,7 @@ class Project {
 }
 
 $(function () {
-    if ($('body div.projects.index').length) {
+    if ($('main.projects.index').length) {
         const showProjects = () => {
             let organizationId = $('.projects.index')[0].dataset.organizationId;
 

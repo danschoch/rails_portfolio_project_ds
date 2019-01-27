@@ -23,7 +23,7 @@ $(function () {
             // Greeting Conditional
             (function(data) {
                 if (data.id.toString() === userId) {
-                    $('#empGreeting').html(`Hi, ${data.first_name}`);
+                    $('#empGreeting').html(`Hi, ${data.first_name}!`);
                 } else {
                     $('#empGreeting').html(`Info for ${data.first_name + ' ' + data.last_name}`);
                 }

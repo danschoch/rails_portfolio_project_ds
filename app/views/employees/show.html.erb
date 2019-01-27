@@ -1,15 +1,34 @@
 <h1 id="empGreeting"></h1>
 
-<div id="empBasicInfo">
-    <h3>Title:</h3>
-    <h4 id="empTitle"></h4>
+<div id="infoPanel">
+    <span id="empBasicInfo">
+        <h2>Title:</h2>
+        <h4 id="empTitle"></h4>
 
-    <h3>Email:</h3>
-    <h4 id="empEmail"></h4>
+        <h2>Email:</h2>
+        <h4 id="empEmail"></h4>
 
-    <h3>Project Lead?</h3>
-    <h4 id="empLead"></h4><br>
+        <h2>Project Lead?</h2>
+        <h4 id="empLead"></h4><br>
+    </span>
+
+    <span id="leadPanel">
+        <% if @curr_user.lead %>
+            <% if @employee == @curr_user %>
+                <%= link_to 'Add Employee', new_organization_employee_path(@employee.organization.id)%>
+            <% else %>
+                <%= link_to 'Edit Employee', edit_employee_path(@employee) %>
+                <%= link_to 'Delete Employee', employee_path(@employee), method: :delete, data: {confirm: "Are you sure you want to delete this employee? This will unassign their tasks and remove their profile."} %>
+            <% end %>
+        <% end %>
+    </span>
+    <span>
+        <% if @employee == @curr_user %>
+            <%= link_to 'Edit Your Profile', edit_employee_path(@employee) %>
+        <% end %>
+    </span>
 </div>
+
 
 <div id='empTasks'>
     <h2>Currently Working On:</h2>
@@ -18,20 +37,3 @@
     <h2>Recently Completed:</h2>
     <ul id="empCompletedTasks"></ul>
 </div>
-
-<div id="leadPanel">
-    <% if @curr_user.lead %>
-        <% if @employee == @curr_user %>
-            <%= link_to 'Add Employee', new_organization_employee_path(@employee.organization.id)%>
-            <%# could delete the following link if the edit link outside this div works%>
-            <%# link_to 'Edit Your Profile', edit_employee_path(@employee) %>
-        <% else %>
-            <%= link_to 'Edit Employee', edit_employee_path(@employee) %>
-            <%= link_to 'Delete Employee', employee_path(@employee), method: :delete, data: {confirm: "Are you sure you want to delete this employee? This will unassign their tasks and remove their profile."} %>
-        <% end %>
-    <% end %>
-</div>
-
-<% if @employee == @curr_user %>
-    <%= link_to 'Edit Your Profile', edit_employee_path(@employee) %>
-<% end %>

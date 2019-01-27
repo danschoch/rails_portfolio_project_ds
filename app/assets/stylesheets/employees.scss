@@ -1,3 +1,29 @@
 // Place all the styles related to the Employees controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.employees.show {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 15% 85%;
+
+
+    #empGreeting {
+        grid-column: span 2;
+        grid-row: span 1;
+        margin: 0.5em 0 0.5em;
+
+    }
+
+    #infoPanel {
+        grid-column: span 2;
+        grid-row-start: 2;
+        
+    }
+
+    #empTasks {
+        margin-top: 0;
+        grid-column: span 3;
+        grid-row: span 2;
+    }
+}

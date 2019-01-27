@@ -1,22 +1,57 @@
 .container {
     font-family: 'Open Sans', sans-serif;
-    padding: 1em;
-}
-
-header, main, footer {
+    height: 700px;
+    display: grid;    
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 18% 67% 15%;
     margin-left: 10%;
     margin-right: 10%;
 }
 
 header {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100%;
     background: lightblue;
     border-radius: 25px;
+
     h1, h3 {
-        color: white;
-        padding-top: 1em;
-        padding-left: 20px;
+        font-weight: 300;
+        margin: 15px;
+        align-self: center;
     }
+
+    h1 {
+        grid-column: span 2;
+    }
+
     h3 {
-        padding-bottom: 1.3em;
+        grid-column: span 1;
+        justify-self: end
+    }
+}
+
+main {
+    grid-column: span 3;
+    margin: 5px 20px 5px;
+}
+
+footer {
+    background: lightblue;
+    border-radius: 25px;
+    display: flex;
+    grid-column: span 3;
+
+    a {
+        margin: 10px;
+    }
+   
+    p {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    p, a {
+        align-self: center;
     }
 }
