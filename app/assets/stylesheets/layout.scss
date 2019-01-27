@@ -1,0 +1,22 @@
+.container {
+    font-family: 'Open Sans', sans-serif;
+    padding: 1em;
+}
+
+header, main, footer {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+header {
+    background: lightblue;
+    border-radius: 25px;
+    h1, h3 {
+        color: white;
+        padding-top: 1em;
+        padding-left: 20px;
+    }
+    h3 {
+        padding-bottom: 1.3em;
+    }
+}

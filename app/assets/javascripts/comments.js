@@ -7,7 +7,7 @@ class Comment {
 }
 
 $(function () {
-    if ($('body div.tasks.show').length) {
+    if ($('main.tasks.show').length) {
         //Event Listener for new comment submission
         $('#new_comment').submit(function(event) {
             event.preventDefault();

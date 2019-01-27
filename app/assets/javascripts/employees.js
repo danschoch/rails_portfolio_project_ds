@@ -10,7 +10,7 @@ Employee.prototype.fullName = function() {
 }
 
 $(function () {
-    if ($('body div.employees.show').length) {
+    if ($('main.employees.show').length) {
         $.get(window.location.pathname + ".json", (data) => {
             console.log(data);
             showBasicInfo(data);

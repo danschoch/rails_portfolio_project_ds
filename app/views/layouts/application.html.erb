@@ -5,33 +5,34 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
-    <div class="header">
-      <% if session[:employee_id] %>
-        <h1>Welcome to Roundtable Task Management for <%= curr_employee.organization.name %></h1>
-        <h3>Currently Logged In As: <%= link_to curr_employee_name, employee_path(curr_employee) %></h3>
-      <% end %>
-    </div>
-    
+    <div class="container">
+      <header>
+        <% if session[:employee_id] %>
+          <h1>Welcome to Roundtable Task Management for <%= curr_employee.organization.name %></h1>
+          <h3>Currently Logged In As: <%= link_to curr_employee_name, employee_path(curr_employee) %></h3>
+        <% end %>
+      </header>
 
-    <%=content_tag "div", class: "#{controller_name} #{action_name}", data: {id: params[:id], curr_user_id: @curr_user.id, organization_id: session[:organization_id]} do %>
-      <%= yield %>
-    <% end %>
-
-    <br>
-    <br>
-    <div class="footer">
-      <% if session[:employee_id] %>
-        <%= link_to "Project Directory", projects_path %>
-        <%= link_to "Employee Directory", organization_employees_path(session[:organization_id]) %>
-        <%= link_to "Log Out", logout_path, method: :delete %>
-      <% else %>
-        <%= link_to "Home Page", root_path %>
+      <%=content_tag "main", class: "#{controller_name} #{action_name}", data: {id: params[:id], curr_user_id: @curr_user.id, organization_id: session[:organization_id]} do %>
+        <%= yield %>
       <% end %>
+
+      <footer>
+        <% if session[:employee_id] %>
+          <%= link_to "Project Directory", projects_path %>
+          <%= link_to "Employee Directory", organization_employees_path(session[:organization_id]) %>
+          <%= link_to "Log Out", logout_path, method: :delete %>
+        <% else %>
+          <%= link_to "Home Page", root_path %>
+        <% end %>
+      </footer>
     </div>
+   
     
   </body>
 
